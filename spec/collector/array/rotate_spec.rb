@@ -10,4 +10,12 @@ describe "Array" do
       [3,1,2].should == [1,2,3].rotate(2)
     end
   end
+
+  describe "rotate!" do
+    it "should modify itself" do
+      array = [1,2,3]
+      array.rotate!
+      [2,3,1].should == array
+    end
+  end
 end
