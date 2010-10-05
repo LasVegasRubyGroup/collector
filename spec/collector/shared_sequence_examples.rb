@@ -25,13 +25,6 @@ end
 share_examples_for 'all non-empty sequences' do
   
   it_should_behave_like 'all sequences'
+  it_should_behave_like 'all non-empty iterables'
   
-  describe 'take' do
-    it 'should return a sequence of the first n elements' do
-      subject.take(2).should == values[0, 2]
-    end
-    it 'should return the same type' do
-      subject.take(2).should be_the_same_type
-    end
-  end
 end

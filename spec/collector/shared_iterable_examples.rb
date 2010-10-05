@@ -59,7 +59,7 @@ share_examples_for 'all iterables' do
       end
     end
     context 'with no block' do
-      it 'should return an collection of arrays of corresponding elements' do
+      it 'should return a collection of arrays of corresponding elements' do
         subject.zip(values.reverse).to_a.should == values.zip(values.reverse)
       end
     end
@@ -69,16 +69,29 @@ share_examples_for 'all iterables' do
     simple_matcher('be the same type') do |given, matcher|
       matcher.failure_message =
         "expected #{given.inspect} to be the same type as #{subject.inspect}"
-      if subject.respond_to?(:next)
-        given.respond_to?(:next)
-      else
-        given.is_a?(subject.class) or subject.is_a?(given.class)
-      end
+      given.is_a?(subject.class) or subject.is_a?(given.class)
     end
   end
   
 end
 
+share_examples_for 'all non-empty iterables' do
+  
+  it_should_behave_like 'all iterables'
+  
+  describe 'take' do
+    it 'should return a sequence of the first n elements' do
+      subject.take(2).should == values.take(2)
+    end
+  end
+  
+  describe 'zip' do
+    it 'should pad shorter sequences with nil' do
+      subject.zip(values[0..-2]).to_a.last.should == [values.last, nil]
+    end
+  end
+  
+end
 
 share_examples_for 'all iterables that are not iterators' do
   
@@ -105,6 +118,12 @@ share_examples_for 'all iterables that are not iterators' do
       it 'should return the same type of collection' do
         subject.reject { false }.should be_the_same_type
       end
+    end
+  end
+  
+  describe 'take' do
+    it 'should return the same type' do
+      subject.take(1).should be_the_same_type
     end
   end
   

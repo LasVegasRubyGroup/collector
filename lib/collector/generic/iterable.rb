@@ -27,9 +27,6 @@ module Collector
       
       alias enum_for to_enum
       
-      alias fold_left inject
-      alias reduce_left inject
-      
       def map
         if block_given?
           __map__ {|_| yield _ }
@@ -48,8 +45,6 @@ module Collector
         end
       end
       
-      alias filter select
-      
       def reject
         if block_given?
           __reject__ {|_| yield _ }
@@ -58,12 +53,10 @@ module Collector
         end
       end
       
-      alias filter_not reject
-      
       def take(n)
         build do |b|
           e = self.each
-          n.times { b << e.next }
+          n.times { b << e.next } rescue StopIteration
         end
       end
       
@@ -77,9 +70,9 @@ module Collector
       def zip(*others)
         es = others.map {|_| _.each }
         if block_given?
-          self.each {|_| yield([_, *es.map {|e| e.next }]) }
+          self.each {|_| yield([_, *es.map {|e| next_or_nil e }]) }
         else
-          map {|_| [_, *es.map {|e| e.next }] }
+          map {|_| [_, *es.map {|e| next_or_nil e }] }
         end
       end
       
@@ -110,6 +103,14 @@ module Collector
       
       def new_builder
         ArrayBuilder.new
+      end
+      
+      private
+      
+      def next_or_nil(e)
+        e.next
+      rescue StopIteration
+        nil
       end
       
       class ArrayBuilder
