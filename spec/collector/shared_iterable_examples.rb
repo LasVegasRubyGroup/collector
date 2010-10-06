@@ -29,7 +29,7 @@ share_examples_for 'all iterables' do
     context 'with no block' do
       it 'should return a mapping iterator' do
         subject.map.with_index {|_, i| "#{_}#{i}"}.should ==
-          values.map.with_index {|_, i| "#{_}#{i}"}
+          values.each_with_index.map {|_, i| "#{_}#{i}"}
       end
     end
   end
