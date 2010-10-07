@@ -14,4 +14,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Russ Smith. See LICENSE for details.
+Copyright (c) 2010 SinCityRuby. See LICENSE for details.
