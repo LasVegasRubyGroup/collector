@@ -45,6 +45,8 @@ module Collector
         end
       end
       
+      alias filter select
+      
       def reject
         if block_given?
           __reject__ {|_| yield _ }
@@ -52,6 +54,8 @@ module Collector
           RejectingIterator.new(iterator)
         end
       end
+      
+      alias filter_not reject
       
       def take(n)
         build do |b|
