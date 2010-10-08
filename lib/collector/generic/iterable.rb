@@ -80,6 +80,10 @@ module Collector
         end
       end
       
+      def reverse
+        build {|b| reverse_each {|_| b << _ } }
+      end
+      
       protected
       
       def __each__
