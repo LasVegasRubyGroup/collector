@@ -23,7 +23,8 @@ share_examples_for 'all iterables' do
   describe 'map' do
     context 'with a block' do
       it 'should apply the block to each element' do
-        subject.map {|_| _.to_s * 2 }.should == values.map {|_| _.to_s * 2 }
+        subject.map {|_| _.to_s * 2 }.to_a.
+        should == values.map {|_| _.to_s * 2 }
       end
     end
     context 'with no block' do
