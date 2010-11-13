@@ -25,6 +25,6 @@ describe Collector::Generic::Iterable do
   
   let(:values) { [1, 2, 3] }
   
-  it_should_behave_like 'all iterables that are not iterators'
+  it_behaves_like 'any iterable that is not an iterator'
   
 end

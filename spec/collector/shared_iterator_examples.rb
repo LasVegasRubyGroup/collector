@@ -1,11 +1,11 @@
 require 'collector/shared_iterable_examples'
 
-share_examples_for 'all iterators' do
+shared_examples_for 'any iterator' do
   
-  it_should_behave_like 'all iterables'
+  it_behaves_like 'any iterable'
   
-  describe 'next' do
-    it 'should return successive values and rewind at the end' do
+  describe '#next' do
+    it 'returns successive values and rewinds at the end' do
       2.times do
         a = []
         loop { a << subject.next }
@@ -14,22 +14,22 @@ share_examples_for 'all iterators' do
     end
   end
   
-  describe 'each' do
-    context 'with a block' do
-      it 'should yield each element to the block' do
+  describe '#each' do
+    context 'with a block given' do
+      it 'yields each element to the block' do
         a = []
         subject.each {|_| a << _ }
         a.should == values
       end
     end
-    context 'with no block' do
-      it 'should return self' do
+    context 'with no block given' do
+      it 'returns self' do
         subject.each.should equal(subject)
       end
     end
   end
   
-  describe 'with_index' do
+  describe '#with_index' do
     
     let :expected do
       b = []
@@ -37,15 +37,15 @@ share_examples_for 'all iterators' do
       b
     end
     
-    context 'with a block' do
-      it 'should yield each element with an index to the block' do
+    context 'with a block given' do
+      it 'yields each element with an index to the block' do
         a = []
         subject.with_index {|_, i| a << [_, i] }
         a.should == expected
       end
     end
-    context 'with no block' do
-      it 'should return an iterator over each element with an index' do
+    context 'with no block given' do
+      it 'returns an iterator over each element with an index' do
         i = subject.with_index
         a = []
         loop { a << i.next }
@@ -54,19 +54,19 @@ share_examples_for 'all iterators' do
     end
   end
   
-  describe 'with_object' do
+  describe '#with_object' do
     
     let(:expected) { values.each_with_object([]) {|_, o| o << _ } }
     
-    context 'with a block' do
-      it 'should yield each element with the given object to the block' do
+    context 'with a block given' do
+      it 'yields each element with the given object to the block' do
         a = []
         subject.with_object(a) {|_, o| o << _; nil }.should equal(a)
         a.should == expected
       end
     end
-    context 'with no block' do
-      it 'should return an iterator over each element with the given object' do
+    context 'with no block given' do
+      it 'returns an iterator over each element with the given object' do
         a = []
         i = subject.with_object(a)
         loop do

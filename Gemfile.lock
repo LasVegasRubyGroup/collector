@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    diff-lcs (1.1.2)
     gemcutter (0.6.1)
     git (1.2.5)
     jeweler (1.4.0)
@@ -8,13 +9,21 @@ GEM
       git (>= 1.2.5)
       rubyforge (>= 2.0.0)
     json_pure (1.4.6)
-    rspec (1.2.9)
+    rspec (2.1.0)
+      rspec-core (~> 2.1.0)
+      rspec-expectations (~> 2.1.0)
+      rspec-mocks (~> 2.1.0)
+    rspec-core (2.1.0)
+    rspec-expectations (2.1.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.1.0)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   jeweler (= 1.4.0)
-  rspec (= 1.2.9)
+  rspec (>= 2.0.0)

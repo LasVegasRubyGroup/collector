@@ -1,18 +1,19 @@
 require 'collector/shared_iterable_examples'
 
-share_examples_for 'all sequences' do
+shared_examples_for 'any sequence' do
   
-  it_should_behave_like 'all iterables that are not iterators'
+  it_behaves_like 'any iterable that is not an iterator'
   
-  it 'should equal another sequence with the same contents' do
-    subject.should == values
+  describe '==' do
+    context 'given another sequence with the same contents' do
+      it 'returns true' do
+        subject.should == values
+      end
+    end
   end
-  
 end
 
-share_examples_for 'all non-empty sequences' do
-  
-  it_should_behave_like 'all sequences'
-  it_should_behave_like 'all non-empty iterables'
-  
+shared_examples_for 'a non-empty sequence' do
+  it_behaves_like 'any sequence'
+  it_behaves_like 'a non-empty iterable'
 end

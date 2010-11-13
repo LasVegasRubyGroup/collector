@@ -24,6 +24,6 @@ describe Collector::Generic::Sequence do
   
   let(:values) { [1, 2, 3] }
   
-  it_should_behave_like 'all non-empty sequences'
+  it_behaves_like 'a non-empty sequence'
   
 end
