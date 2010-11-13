@@ -1,5 +1,5 @@
 class Array
-  unless instance_methods.include?(:select!)
+  unless method_defined?(:select!)
     def select!(&block)
       self.replace(select(&block))
     end

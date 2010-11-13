@@ -1,5 +1,5 @@
 module Enumerable
-  unless instance_methods.include?(:scan_right)
+  unless method_defined?(:scan_right)
     def scan_right(a)
       as = [a]
       reverse_each do |_|

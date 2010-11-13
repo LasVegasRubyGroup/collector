@@ -1,5 +1,5 @@
 module Enumerable
-  unless instance_methods.include?(:scan_left)
+  unless method_defined?(:scan_left)
     def scan_left(a)
       as = [a]
       each do |_|

@@ -1,5 +1,5 @@
 module Enumerable
-  unless instance_methods.include?(:each_with_object)
+  unless method_defined?(:each_with_object)
     def each_with_object(o)
       if block_given?
         each {|_| yield _, o }
