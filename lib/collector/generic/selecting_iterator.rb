@@ -26,7 +26,7 @@ module Collector
       end
       
       def with_index
-        @iter.with_index.select {|_| p _; yield _ }.map {|_,| _ }
+        @iter.with_index.select {|_| yield _ }.map {|_,| _ }
       end
       
       def with_object
